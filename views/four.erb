@@ -1,0 +1,36 @@
+<h1>Exercise 4</h1>
+
+<h3>Hello, Backbone! Views, Views everywhere</h3>
+
+<section id='container'>
+
+</section>
+<section class='meow'>
+
+</section>
+
+<script type="text/javascript">
+
+  var app = app || {};
+
+  app.listItemView = Backbone.View.extend({
+    initialize: function() {
+      console.log('oh snap... the view has arrived');
+      this.render();
+      console.log('hey, content should be rendered in');
+      console.log(this.$el);
+    },
+    render: function() {
+      console.log('oh snap... the view took the shades off');
+      this.$el.append('<img src="http://www.roflcat.com/images/cats/Deal_With_It.jpg">');
+    }
+  });
+
+  var listItem = new app.listItemView({
+    el: $('#container')
+  });
+  var listItemTwo = new app.listItemView({
+    el: $('.meow')
+  });
+
+</script>
