@@ -1,0 +1,64 @@
+<script type="text/template" id='peopleTemplate'>
+  <h3><%%= name %></h3>
+  <ul>
+    <li> <strong>Height:</strong> <%%= height %> </li>
+    <li> <strong>Mass:</strong> <%%= mass %> </li>
+    <li> <strong>Year Born:</strong> <%%= birth_year %> </li>
+    <li> <strong>Eye Colour:</strong> <%%= eye_color %> </li>
+  </ul>
+</script>
+
+<h1>Star Wars API Example</h1>
+
+<h3>Luke Skywalker!</h3>
+
+<p>
+  Today I am going to fetch data from <code>http://swapi.co/api/people/1/</code> and render it! This should return information about Luke Skywalker.
+</p>
+
+<section class='person'>
+  <!-- render person here! -->
+</section>
+
+<script type="text/javascript">
+  var sw = sw || {};
+  var active = active || {};
+
+  sw.peopleModel = Backbone.Model.extend({
+    url: 'http://swapi.co/api/people/1/',
+    initialize: function() {
+      // 'name', 'height', 'mass', 'birth_year'
+      console.log('sw.peopleModel is instantiated!');
+    }
+  });
+
+  // el ($el) our DOM element
+  // model
+  // template
+  sw.peopleView = Backbone.View.extend({
+    initialize: function() {
+      var that = this;
+      this.template = _.template($('#peopleTemplate').html());
+      this.model.on('change', function() {
+        that.render();
+      });
+      this.model.fetch();
+    },
+    render: function() {
+      console.log('my view is rendering.. or is it?');
+      this.$el.html(this.template(this.model.attributes));
+    }
+  });
+
+  $(document).ready(function() {
+
+    active.lukeModel = new sw.peopleModel();
+    active.lukeView = new sw.peopleView({
+      el: $('.person'),
+      model: active.lukeModel
+    });
+    //active.lukeModel.fetch();
+
+  });
+
+</script>

@@ -46,6 +46,9 @@ get '/9' do
   erb :nine
 end
 
+get '/10' do
+  erb :ten
+end
 
 
 #### RESTFUL API
