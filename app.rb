@@ -6,6 +6,16 @@ ActiveRecord::Base.establish_connection(
   :database => 'instafake'
 )
 
+### instafake application!
+### final product :)
+### we did it guys! yay!
+
+get '/instafake' do
+  erb :instafake
+end
+
+### exercises
+
 get '/' do
   erb :index
 end
@@ -68,6 +78,13 @@ end
 post '/api/instafake' do
   request_body = JSON.parse(request.body.read.to_s)
   InstagramModel.create(request_body).to_json
+
+  # lab time!
+  # let's take a look at our request
+  #binding.pry
+  # stops the execution of our app
+  # lets us use the console (Terminal) to interact with this code block
+
 end
 
 ## update
@@ -98,4 +115,11 @@ end
 ## delete
 delete '/api/instafake/:id' do
   InstagramModel.destroy(params[:id]).to_json
+end
+
+
+### Backbone.js CRUD
+
+get '/crud' do
+  erb :crud
 end
